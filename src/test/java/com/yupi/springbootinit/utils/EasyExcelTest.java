@@ -2,7 +2,6 @@ package com.yupi.springbootinit.utils;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.support.ExcelTypeEnum;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.ResourceUtils;
 
@@ -20,8 +19,8 @@ import java.util.Map;
 @SpringBootTest
 public class EasyExcelTest {
 
-    @Test
-    public void doImport() throws FileNotFoundException {
+//    @Test
+    public static void doImport() throws FileNotFoundException {
         File file = ResourceUtils.getFile("classpath:test_excel.xlsx");
         List<Map<Integer, String>> list = EasyExcel.read(file)
                 .excelType(ExcelTypeEnum.XLSX)
@@ -31,4 +30,11 @@ public class EasyExcelTest {
         System.out.println(list);
     }
 
+    public static void main(String[] args) {
+        try {
+            doImport();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
